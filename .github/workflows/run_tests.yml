@@ -28,5 +28,5 @@ jobs:
         if: always() # Luôn chạy bước này kể cả khi test bị Fail
         uses: actions/upload-artifact@v4
         with:
-          name: Test-Report
-          path: target/ExtentReports/ # Đường dẫn đến folder chứa report của bạn
+          name: surefire-reports
+          path: target/surefire-reports/ # Đường dẫn đến folder chứa report của bạn
