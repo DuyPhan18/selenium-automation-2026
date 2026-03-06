@@ -20,18 +20,20 @@ public class TestListener implements ITestListener {
     }
     @Override
     public void onTestFailure(ITestResult result) {
-        Object testClass = result.getInstance();
-        WebDriver driver = DriverManager.getDriver(); // Lấy driver từ ThreadLocal của bạn
+        WebDriver driver = DriverManager.getDriver();
         if (driver != null) {
-            // Chỉ chụp ảnh khi driver tồn tại
             String screenshotPath = CaptureHelpers.captureScreenshot(driver, result.getName());
 
-            // Gán ảnh vào Extent Report
-            ExtentManager.getTest().fail("Test Case bị lỗi!",
-                    MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
+            // KIỂM TRA: Nếu có ảnh thì đính kèm, không thì chỉ ghi log lỗi
+            if (screenshotPath != null && !screenshotPath.isEmpty()) {
+                ExtentManager.getTest().fail("Test Case FAILED: " + result.getThrowable(),
+                        MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
+            } else {
+                ExtentManager.getTest().fail("Test Case FAILED: " + result.getThrowable());
+                ExtentManager.getTest().warning("Could not attach screenshot (Path is null or empty).");
+            }
         } else {
-            // Nếu driver null, chỉ ghi log chữ để tránh bị crash
-            ExtentManager.getTest().fail("Test Case bị lỗi nhưng không thể chụp ảnh vì Driver là NULL.");
+            ExtentManager.getTest().fail("Test Case FAILED: " + result.getThrowable() + " (Driver is NULL)");
         }
     }
     @Override
