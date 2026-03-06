@@ -83,6 +83,7 @@ public class PIMPage extends BasePage {
         // 1. Đợi ô input xuất hiện và dùng phím tắt để xóa sạch (Clear "bất tử")
         ui.waitToDisplay(empIdInput);
         ui.clearInput(empIdInput);
+        ui.waitToDisplay(empIdInput);
         ui.sendKeysToElement(empIdInput, empId);
 
         // 2. Nhấn Search
