@@ -5,14 +5,23 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 public class ExtentManager {
-    // 1. Khởi tạo thông qua một hàm static trả về đối tượng
     private static final ExtentReports extentReports = createInstance("reports/extentReport/extentReport.html");
     private static ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>();
 
     public static ExtentReports getInstance() {
         return extentReports;
     }
+    public static ExtentTest getTest() {
+        if (extentTest.get() == null) {
+            // Tạo một test tạm thời để tránh crash nếu Listener chưa kịp chạy
+            extentTest.set(extentReports.createTest("Test Initialization"));
+        }
+        return extentTest.get();
+    }
 
+    public static void setTest(ExtentTest test) {
+        extentTest.set(test);
+    }
     public static ExtentReports createInstance(String fileName) {
         // KHÔNG dùng extentReports = new ExtentReports() ở đây
         ExtentReports extent = new ExtentReports();
@@ -31,13 +40,6 @@ public class ExtentManager {
         return extent; // Trả về đối tượng để gán vào biến final ở trên
     }
 
-    public static ExtentTest getTest() {
-        return extentTest.get();
-    }
-
-    public static void setTest(ExtentTest test) {
-        extentTest.set(test);
-    }
 
     public static void unload() {
         extentTest.remove();
