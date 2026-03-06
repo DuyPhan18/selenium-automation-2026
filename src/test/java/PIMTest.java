@@ -72,6 +72,7 @@ public class PIMTest extends BaseTest {
 
     @DataProvider(name = "homePageTestData", parallel = true)
     public Object[][] getData () {
-        return ExcelUtils.getTableArray("data\\test-data.xlsx", "HomePageTest", false);
+        String path = "data" + java.io.File.separator + "test-data.xlsx";
+        return ExcelUtils.getTableArray(path, "HomePageTest", false);
     }
 }

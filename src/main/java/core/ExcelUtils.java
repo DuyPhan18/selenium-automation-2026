@@ -18,12 +18,22 @@ public class ExcelUtils {
      */
     public static synchronized String[][] getTableArray(String filePath, String sheetName, boolean isGetFirstRow){
         String[][] data = null;
-        try {
-            FileInputStream fileInputStream = new FileInputStream(new File(filePath));
+        File file = new File(filePath);
 
+        // KIỂM TRA FILE TRƯỚC KHI ĐỌC
+        if (!file.exists()) {
+            System.err.println("❌ ERROR: File not found at path: " + file.getAbsolutePath());
+            // Thay vì return null, bạn nên ném ngoại lệ để TestNG dừng lại ngay
+            throw new RuntimeException("Excel file not found at: " + filePath);
+        }
+
+        try (FileInputStream fileInputStream = new FileInputStream(file)) {
             Workbook wb = new XSSFWorkbook(fileInputStream);
-
             Sheet sheet = wb.getSheet(sheetName);
+
+            if (sheet == null) {
+                throw new RuntimeException("Sheet " + sheetName + " does not exist in " + filePath);
+            }
 
             int rows = sheet.getPhysicalNumberOfRows();
             int cols = sheet.getRow(0).getPhysicalNumberOfCells();
