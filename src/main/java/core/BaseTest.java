@@ -52,6 +52,8 @@ public abstract class BaseTest {
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--disable-gpu");
                 chromeOptions.addArguments("--headless=new");
+                chromeOptions.addArguments("--no-sandbox"); // Vượt qua rào cản bảo mật của OS
+                chromeOptions.addArguments("--disable-dev-shm-usage"); // Tránh lỗi thiếu bộ nhớ đệm (/dev/shm)
                 // chromeOptions.addArguments("--headless");
                 driver = new ChromeDriver(chromeOptions);
                 break;
@@ -60,6 +62,8 @@ public abstract class BaseTest {
                 // Firefox không dùng ChromeOptions mà dùng FirefoxOptions
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.addArguments("-headless");
+                firefoxOptions.addArguments("--no-sandbox"); // Vượt qua rào cản bảo mật của OS
+                firefoxOptions.addArguments("--disable-dev-shm-usage"); // Tránh lỗi thiếu bộ nhớ đệm (/dev/shm)
                 driver = new FirefoxDriver(firefoxOptions);
                 break;
 
@@ -67,6 +71,8 @@ public abstract class BaseTest {
                 EdgeOptions edgeOptions = new EdgeOptions();
                 edgeOptions.addArguments("--disable-gpu");
                 edgeOptions.addArguments("-headless");
+                edgeOptions.addArguments("--no-sandbox"); // Vượt qua rào cản bảo mật của OS
+                edgeOptions.addArguments("--disable-dev-shm-usage"); // Tránh lỗi thiếu bộ nhớ đệm (/dev/shm)
                 driver = new EdgeDriver(edgeOptions);
                 break;
 
