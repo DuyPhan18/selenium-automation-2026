@@ -54,7 +54,7 @@ public abstract class BaseTest {
                 chromeOptions.addArguments("--headless=new");
                 chromeOptions.addArguments("--no-sandbox"); // Vượt qua rào cản bảo mật của OS
                 chromeOptions.addArguments("--disable-dev-shm-usage"); // Tránh lỗi thiếu bộ nhớ đệm (/dev/shm)
-                // chromeOptions.addArguments("--headless");
+                chromeOptions.addArguments("--window-size=1920,1080");
                 driver = new ChromeDriver(chromeOptions);
                 break;
 
@@ -64,6 +64,7 @@ public abstract class BaseTest {
                 firefoxOptions.addArguments("-headless");
                 firefoxOptions.addArguments("--no-sandbox"); // Vượt qua rào cản bảo mật của OS
                 firefoxOptions.addArguments("--disable-dev-shm-usage"); // Tránh lỗi thiếu bộ nhớ đệm (/dev/shm)
+                firefoxOptions.addArguments("--window-size=1920,1080");
                 driver = new FirefoxDriver(firefoxOptions);
                 break;
 
@@ -73,6 +74,7 @@ public abstract class BaseTest {
                 edgeOptions.addArguments("-headless");
                 edgeOptions.addArguments("--no-sandbox"); // Vượt qua rào cản bảo mật của OS
                 edgeOptions.addArguments("--disable-dev-shm-usage"); // Tránh lỗi thiếu bộ nhớ đệm (/dev/shm)
+                edgeOptions.addArguments("--window-size=1920,1080");
                 driver = new EdgeDriver(edgeOptions);
                 break;
 
