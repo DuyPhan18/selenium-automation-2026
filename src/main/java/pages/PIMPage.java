@@ -41,7 +41,7 @@ public class PIMPage extends BasePage {
     @FindBy(how = How.XPATH, using = "//h6[text()='Personal Details']")
     private WebElement pdTitle;
 
-    @FindBy(how = How.XPATH, using = "//label[text()='Employee Id']/parent::div/following-sibling::div/input")
+    @FindBy(how = How.XPATH, using = "//label[text()='Employee Id']/ancestor::div[contains(@class,'oxd-input-group')]//input")
     private WebElement empIdInput;
 
     @FindBy(how = How.XPATH, using = "//i[contains(@class, 'bi-trash')]")
