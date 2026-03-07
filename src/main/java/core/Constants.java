@@ -1,7 +1,7 @@
 package core;
 
 public class Constants {
-    public static final int TIMEOUT = 30;
+    public static final int TIMEOUT = 40;
     public static final int POLLING = 1;
     public static final String userId = "mngr581439";
     public static String password = "test112$";
