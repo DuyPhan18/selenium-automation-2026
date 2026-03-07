@@ -29,6 +29,7 @@ public class WebUI {
         element.sendKeys(value);
     }
     public void clearInput(WebElement element) {
+        waitToDisplay(element);
         element.sendKeys(Keys.chord(Keys.CONTROL, "a"));
         element.sendKeys(Keys.BACK_SPACE);
     }
