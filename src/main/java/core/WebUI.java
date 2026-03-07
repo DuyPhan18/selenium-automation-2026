@@ -22,6 +22,7 @@ public class WebUI {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
     public void waitToClick(WebElement element){
+        waitToDisplay(element);
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
     }
     public void sendKeysToElement(WebElement element, String value){
