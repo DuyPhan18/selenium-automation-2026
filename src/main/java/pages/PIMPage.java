@@ -2,10 +2,7 @@ package pages;
 
 import core.BasePage;
 import core.WebUI;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
@@ -81,7 +78,7 @@ public class PIMPage extends BasePage {
 
     public boolean searchAndDelEmp(String empId){
         // 1. Đợi ô input xuất hiện và dùng phím tắt để xóa sạch (Clear "bất tử")
-        ui.waitToDisplay(empIdInput);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//label[text()='Employee Id']/ancestor::div[contains(@class,'oxd-input-group')]//input")));
         ui.clearInput(empIdInput);
         ui.waitToDisplay(empIdInput);
         ui.sendKeysToElement(empIdInput, empId);
