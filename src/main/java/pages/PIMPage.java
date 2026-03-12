@@ -50,7 +50,7 @@ public class PIMPage extends BasePage {
     @FindBy(how = How.XPATH, using = "//button[(text()= ' Yes, Delete ')]")
     private WebElement delBtn;
 
-    @FindBy(how = How.XPATH, using = "//button[text()=' Search ']")
+    @FindBy(how = How.XPATH, using = "//button[@type='submit']")
     private WebElement searchBtn;
 
     @FindBy(how = How.XPATH, using = "//div[contains(@class, 'orangehrm-horizontal-padding orangehrm-vertical-padding')]/span")
