@@ -50,7 +50,7 @@ public abstract class BaseTest {
             case "chrome":
                 System.setProperty("webdriver.chrome.silentOutput", "true");
                 ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.addArguments("--headless=new"); // Dùng mode headless mới nhất
+//                chromeOptions.addArguments("--headless=new"); // Dùng mode headless mới nhất
                 chromeOptions.addArguments("--window-size=1920,1080"); // Ép màn hình Full HD
                 chromeOptions.addArguments("--no-sandbox"); // Cần thiết cho Linux/Docker
                 chromeOptions.addArguments("--disable-dev-shm-usage"); // Tránh crash trên máy ảo

@@ -78,7 +78,7 @@ public class PIMPage extends BasePage {
 
     public boolean searchAndDelEmp(String empId){
         // 1. Đợi ô input xuất hiện và dùng phím tắt để xóa sạch (Clear "bất tử")
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//label[text()='Employee Id']/ancestor::div[contains(@class,'oxd-input-group')]//input")));
+        ui.waitToDisplay(searchBtn);
         ui.clearInput(empIdInput);
         ui.sendKeysToElement(empIdInput, empId);
 
